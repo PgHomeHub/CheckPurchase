@@ -1,0 +1,17 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "CheckPO",
+  "short_name": "CheckPO",
+  "version": "io.cordova.hellocordova",
+  "description": "Homehub Application",
+  "author": "Homehub Team",
+  "icons": [
+    {
+      "src": "po.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "start_url": "index.html"
+}
