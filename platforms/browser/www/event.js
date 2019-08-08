@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     $.ajax({
     	type: 'POST',
-        url:"http://192.168.100.12/CheckPO/conn.php",
+        url:"http://192.168.100.31:8080/CheckPO/conn.php",
         success: function(data){
         	console.log(data);
         	$('#CheckConnect').html(data);
@@ -64,7 +64,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: 'POST',
-            url:"http://192.168.100.12/CheckPO/query_CheckIP.php",
+            url:"http://192.168.100.31:8080/CheckPO/query_CheckIP.php",
             success: function(data){
                 console.log(data);
                 $('#CheckIP').html(data);
@@ -92,7 +92,7 @@ $(document).ready(function(){
         $.ajax({
             type: "post",
             data: "PODocNo=" + PODocNo,
-            url: "http://192.168.100.12/CheckPO/query_checkPO.php",
+            url: "http://192.168.100.31:8080/CheckPO/query_checkPO.php",
             success: function(msg) {
 
                 var data = msg.trim();
@@ -323,7 +323,7 @@ function FindGood(inpGoodCode) {
     $.ajax({
         type: "post",
         data: "inpGoodCode=" + inpGoodCode + "&PODocNo=" + PODocNo,
-        url: "http://192.168.100.12/CheckPO/query_checkGood.php",
+        url: "http://192.168.100.31:8080/CheckPO/query_checkGood.php",
         success: function(msg) {
             if (msg.trim() == "") {
 
@@ -590,7 +590,7 @@ function setData_Insert() {
 
     $.ajax({
 
-        url: 'http://192.168.100.12/CheckPO/query_insert.php',
+        url: 'http://192.168.100.31:8080/CheckPO/query_insert.php',
         type: 'post',
         data: {item_GoodCode: item_GoodCode ,item_GoodName: item_GoodName ,item_Goodunit: item_Goodunit 
             ,item_Inv: item_Inv ,item_Loca: item_Loca ,item_Qty: item_Qty
