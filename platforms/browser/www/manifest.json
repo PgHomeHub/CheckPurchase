@@ -1,8 +1,8 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "CheckPO",
-  "short_name": "CheckPO",
+  "name": "CheckPurChase",
+  "short_name": "CheckPurChase",
   "version": "io.cordova.hellocordova",
   "description": "Homehub Application",
   "author": "Homehub Team",

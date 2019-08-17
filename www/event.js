@@ -388,13 +388,17 @@ $("#table_data_Good").on("click", "tr", function() {
                 content: 'คุณต้องการลบ <code>'+getGood+'</code> ออกจากรายการหรือไม่ ?',
                 type: 'red',
                 buttons: {
-                    ยืนยัน: function () {
 
-                        $('#'+rowDel).remove();
-
-                    },
                     ยกเลิก: function () {
 
+                    },
+                    ยืนยัน: {
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            $('#'+rowDel).remove();
+
+                        }
                     }
                 }
             });
@@ -656,6 +660,9 @@ $("#btnSave").click(function(e){
                 ยืนยัน: {
                     btnClass: 'btn-orange',
                     action: function(){
+
+                        // Focus ใช้งานไม่ได้
+                        //$("#inpGoodCode").select();
 
 
                     }
