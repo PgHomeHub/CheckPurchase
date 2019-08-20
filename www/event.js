@@ -5,6 +5,7 @@ $(document).ready(function(){
 
     var PODocNo = "";
     var Data_tableGood =""
+    var ListNo = 0;
 
     $('#inpPO').focus()
     $('#btnFindSpinner').hide();
@@ -307,12 +308,13 @@ function CheckGoodDup(Goodcode) {
 
 
 
-
 $("#modalCheckGood").on('shown.bs.modal', function(){
 
     $(this).find('input[type="number"]').select();
 
 });
+
+
 
 function FindGood(inpGoodCode) {
 
@@ -322,7 +324,7 @@ function FindGood(inpGoodCode) {
 
     $.ajax({
         type: "post",
-        data: "inpGoodCode=" + inpGoodCode + "&PODocNo=" + PODocNo,
+        data: "inpGoodCode=" + inpGoodCode + "&PODocNo=" + PODocNo+ "&ListNo=" + ListNo,
         url: "http://192.168.100.31:8080/CheckPO/query_checkGood.php",
         success: function(msg) {
             if (msg.trim() == "") {
@@ -422,6 +424,7 @@ $("#btnConfirm").click(function(){
 
     var Savecount = $('#modal_Count').val();
     var GoodRemaQty2 = $("#Detail").attr("GoodRemaQty2").trim();
+    ListNo += ","+$("#Detail").attr("ListNo").trim();
 
     //alert(GoodRemaQty2)
 
@@ -535,12 +538,16 @@ function setListTable() {
     $('#inpGoodCode').val("");
     $('#inpGoodCode').select();
     var NameCode = $('#modal_GoodName').html();
+    var ListNoInsert = $("#Detail").attr("ListNo").trim();
+
+    //alert(ListNoInsert);
+
     Count = Count + 1;
 
     Data_tableGood += "<tr id = 'row"+Count+"'>"
-    Data_tableGood += "<td style='padding: .40rem;' class = 'td_GoodCode'>" + $('#modal_GoodCode').html() + "</td>"
+    Data_tableGood += "<td style='padding: .40rem;' class = 'td_GoodCode' Value = '"+ListNoInsert+"'>" + $('#modal_GoodCode').html() + "</td>"
     Data_tableGood += "<td style='padding: .40rem;' class = 'td_GoodName' Value = '"+NameCode+"'>" + NameCode.substring(0,4) + "</td>"
-    Data_tableGood += "<td style='padding: .40rem;' class = 'td_Inv'>" + $('#modal_Inv').html() + "</td>"
+    Data_tableGood += "<td style='padding: .40rem;' class = 'td_Inv' >" + $('#modal_Inv').html() + "</td>"
     Data_tableGood += "<td style='padding: .40rem;' class = 'td_Loca'>" + $('#modal_Loca').html() + "</td>"
     Data_tableGood += "<td style='padding: .40rem;' class = 'td_Unit'>" + $('#modal_Unit').html() + "</td>"
     Data_tableGood += "<td style='padding: .40rem;' class = 'td_Count' align='right'>" + $('#modal_Count').val() + "</td>"
@@ -562,6 +569,7 @@ function setData_Insert() {
     var item_Inv = [];
     var item_Loca = [];
     var item_Qty = [];
+    var item_ListNo = [];
 
     var BrchID = $("#Detail").attr("BrchID").trim()
     var VendorCode = $("#Detail").attr("VendorCode").trim()
@@ -588,6 +596,10 @@ function setData_Insert() {
     });
     $('.td_Count').each(function(){
         item_Qty.push($(this).text().trim());
+    });    
+    // ฝาก ListNo ไว้ที่ td_GoodCode ในค่าของ Value
+    $('.td_GoodCode').each(function(){
+        item_ListNo.push($(this).attr("Value").trim());
     });
 
 
@@ -598,7 +610,7 @@ function setData_Insert() {
         type: 'post',
         data: {item_GoodCode: item_GoodCode ,item_GoodName: item_GoodName ,item_Goodunit: item_Goodunit 
             ,item_Inv: item_Inv ,item_Loca: item_Loca ,item_Qty: item_Qty
-            ,PODocNo: PODocNo,BrchID: BrchID,VendorCode: VendorCode,VendorName: VendorName,POID: POID},
+            ,PODocNo: PODocNo,BrchID: BrchID,VendorCode: VendorCode,VendorName: VendorName,POID: POID,item_ListNo: item_ListNo},
 
             success:function(data){
 
