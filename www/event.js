@@ -126,7 +126,7 @@ $(document).ready(function(){
 
                     $.confirm({
                         title: '<strong style="color: #004085;">สถานะ</strong>',
-                        content: '<strong style="color: #004085;">' + PODocNo + '</strong> สถานะ <strong style="color: red;">FULL </strong> หรือ <strong style="color: red;">Cancel </strong> แล้ว ไม่สามารถตรวจสอบได้',
+                        content: '<strong style="color: #004085;">' + PODocNo + '</strong> สถานะ <strong style="color: red;">FULL </strong> หรือ <strong style="color: red;">Cancel </strong> แล้ว ไม่สามารถใช้งานได้',
                         type: 'blue',
                         buttons: {
                             ยืนยัน: {
@@ -255,7 +255,7 @@ $("#btnFindGood").click(function(e) {
 
             $.confirm({
                 title: '<strong style="color: red;">สินค้าซ้ำ</strong>',
-                content: 'รหัสสินค้า <code>' + inpGoodCode + '</code> ถูกสแกนแล้ว ต้องการสแกนซ้ำหรือไม่',
+                content: 'รหัสสินค้า <strong style="color: red;">' + inpGoodCode + '</strong> ถูกสแกนแล้ว ต้องการสแกนซ้ำหรือไม่',
                 type: 'red',
                 buttons: {
                     ยกเลิก: function () {
@@ -289,19 +289,19 @@ function CheckGoodDup(Goodcode) {
 
 
     $('.td_GoodCode').each(function(){
-            //alert($(this).text().trim());
-            if($(this).text().trim() == Goodcode){
+        //alert($(this).text().trim());
+        if($(this).text().trim() == Goodcode){
 
-                alert("True")
-                return true;
+            alert("True")
+            return true;
 
-            }else{
+        }else{
 
-                alert("False")
-                return false;
+            alert("False")
+            return false;
 
-            }
-        });
+        }
+    });
 
 }
 
@@ -331,7 +331,7 @@ function FindGood(inpGoodCode) {
 
                 $.confirm({
                     title: '<strong style="color: orange;">แจ้งเตือน</strong>',
-                    content: 'ไม่พบข้อมูล <code>' + inpGoodCode + '</code> อาจรับไปแล้ว หรือไม่ได้อยู่ใน <code>' + PODocNo + '</code>',
+                    content: 'ไม่พบข้อมูล <strong style="color: orange;">' + inpGoodCode + '</strong> อาจรับไปแล้ว หรือไม่ได้อยู่ใน <strong style="color: orange;">' + PODocNo + '</strong>',
                     type: 'orange',
                     buttons: {
                         ยืนยัน: {
@@ -369,8 +369,6 @@ function FindGood(inpGoodCode) {
 
 
 
-
-
 var touchtime = 0;
 $("#table_data_Good").on("click", "tr", function() {
 
@@ -387,7 +385,7 @@ $("#table_data_Good").on("click", "tr", function() {
 
             $.confirm({
                 title: '<strong style="color: red;">ลบรายการ</strong>',
-                content: 'คุณต้องการลบ <code>'+getGood+'</code> ออกจากรายการหรือไม่ ?',
+                content: 'คุณต้องการลบ <strong style="color: red;">'+getGood+'</strong> ออกจากรายการหรือไม่ ?',
                 type: 'red',
                 buttons: {
 
@@ -398,6 +396,13 @@ $("#table_data_Good").on("click", "tr", function() {
                         btnClass: 'btn-red',
                         action: function(){
 
+                            var re_row = rowDel.replace("row",",");
+                            var re_ListNo = ListNo.replace(re_row,"")
+
+                            //alert(ListNo +" - "+ re_row + " = " + re_ListNo);
+
+                            // replace เอาลำดับที่ลบรายการออก
+                            ListNo = re_ListNo;
                             $('#'+rowDel).remove();
 
                         }
@@ -416,6 +421,62 @@ $("#table_data_Good").on("click", "tr", function() {
     }
 
 });
+
+
+
+
+var touchtime_ClearGoods = 0;
+$("#inpGoodCode").on("click", function() {
+
+    if (touchtime_ClearGoods == 0) {
+
+        touchtime_ClearGoods = new Date().getTime();
+
+    } else {
+        if (((new Date().getTime()) - touchtime_ClearGoods) < 300) {
+
+            //alert("Click Input Goods");
+            $('#inpGoodCode').val("");
+            touchtime_ClearGoods = 0;
+
+
+        } else {
+
+            touchtime_ClearGoods = new Date().getTime();
+
+        }
+    }
+
+});
+
+
+
+var touchtime_ClearPO = 0;
+$("#inpPO").on("click", function() {
+
+    if (touchtime_ClearPO == 0) {
+
+        touchtime_ClearPO = new Date().getTime();
+
+    } else {
+        if (((new Date().getTime()) - touchtime_ClearPO) < 300) {
+
+            //alert("Click Input Goods");
+            $('#inpPO').val("");
+            touchtime_ClearPO = 0;
+
+
+        } else {
+
+            touchtime_ClearPO = new Date().getTime();
+
+        }
+    }
+
+});
+
+
+
 
 
 
@@ -577,8 +638,6 @@ function setData_Insert() {
     var POID = $("#Detail").attr("POID").trim()
 
 
-
-
     $('.td_GoodCode').each(function(){
         item_GoodCode.push($(this).text().trim());
     });
@@ -608,45 +667,26 @@ function setData_Insert() {
 
         url: 'http://192.168.100.31:8080/CheckPO/query_insert.php',
         type: 'post',
-        data: {item_GoodCode: item_GoodCode ,item_GoodName: item_GoodName ,item_Goodunit: item_Goodunit 
-            ,item_Inv: item_Inv ,item_Loca: item_Loca ,item_Qty: item_Qty
-            ,PODocNo: PODocNo,BrchID: BrchID,VendorCode: VendorCode,VendorName: VendorName,POID: POID,item_ListNo: item_ListNo},
+        data: {item_GoodCode: item_GoodCode ,item_GoodName: item_GoodName ,item_Goodunit: item_Goodunit ,item_Inv: item_Inv ,item_Loca: item_Loca ,item_Qty: item_Qty ,PODocNo: PODocNo,BrchID: BrchID,VendorCode: VendorCode,VendorName: VendorName,POID: POID,item_ListNo: item_ListNo},
 
-            success:function(data){
+        success:function(data){
 
-                if(data.trim() == "Insert Successfully"){
+            if(data.trim() == "Insert Successfully"){
 
+                window.location = "index.html";
 
-                    window.location = "index.html";
-                        /*$.confirm({
-                            title: '<strong style="color: green;">สำเร็จ</strong>',
-                            content: 'บันทึกข้อมูล สำเร็จ',
-                            type: 'green',
-                            buttons: {
-                                ยืนยัน: {
-                                    btnClass: 'btn-orange',
-                                    action: function(){
-                                                window.location = "index.html";
+            }else{
 
+                alert(data.trim());
 
-                                    }
-                                }
-                            }
-                        });*/
+            }
 
+        }
 
-                    }else{
+    });
 
-                        alert(data.trim());
-
-                    }              
-
-                }
-
-            });
 
 }
-
 
 
 $("#btnClose").click(function(){
