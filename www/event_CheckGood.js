@@ -7,17 +7,19 @@ $(document).ready(function(){
     var Data_tableGood =""
     var ListNo = 0;
 
-    $('#inpPO').focus()
+    $('#inpGoodCode').focus();
+    $('#btnFindGood_Spinner').hide();
+    $('#btnConfirmSpinner').hide();
     $('#btnFindSpinner').hide();
     //$('#btnCheck').hide();
     $('#btnCancelPO').hide();
     $('#btnFindGood_Spinner').hide();
     $('#frm_Good').hide();
     $('#btnSaveStock_Spinner').hide();
-    $('#btnConfirmSpinner').hide();
 
     
     //alert(x)
+    
 
     $.ajax({
     	type: 'POST',
@@ -264,57 +266,57 @@ $("#btnCheck").click(function(){
 
 });
 
-/*
+
 
 $("#btnFindGood").click(function(e) {
 
     e.preventDefault();
     var inpGoodCode = $("#inpGoodCode").val();
-    //FindGood(inpGoodCode);
+        //FindGood(inpGoodCode);
 
 
 
-    var myarray = [];
-    //ดึงรหัสสินค้าที่ยิงไปแล้ว เข้า Array
-    $('.td_GoodCode').each(function(){
+        var myarray = [];
+        /* ดึงรหัสสินค้าที่ยิงไปแล้ว เข้า Array*/
+        $('.td_GoodCode').each(function(){
 
-        myarray.push($(this).text().trim());
+            myarray.push($(this).text().trim());
 
-    });
-
-    //Check ว่ารหัสสแกนไปแล้วหรือยัง 
-    if(jQuery.inArray(inpGoodCode, myarray) !== -1){
-
-        $.confirm({
-            title: '<strong style="color: red;">สินค้าซ้ำ</strong>',
-            content: 'รหัสสินค้า <strong style="color: red;">' + inpGoodCode + '</strong> ถูกสแกนแล้ว ต้องการสแกนซ้ำหรือไม่',
-            type: 'red',
-            buttons: {
-                ยกเลิก: function () {
-
-
-                    $('#inpGoodCode').select();
-
-                },
-                ยืนยัน: {
-                    btnClass: 'btn-red',
-                    action: function(){
-
-                        FindGood(inpGoodCode);
-
-                    }
-                }
-            }
         });
 
-    }else{
+        /* Check ว่ารหัสสแกนไปแล้วหรือยัง */
+        if(jQuery.inArray(inpGoodCode, myarray) !== -1){
 
-        FindGood(inpGoodCode);
+            $.confirm({
+                title: '<strong style="color: red;">สินค้าซ้ำ</strong>',
+                content: 'รหัสสินค้า <strong style="color: red;">' + inpGoodCode + '</strong> ถูกสแกนแล้ว ต้องการสแกนซ้ำหรือไม่',
+                type: 'red',
+                buttons: {
+                    ยกเลิก: function () {
 
-    }
+
+                        $('#inpGoodCode').select();
+
+                    },
+                    ยืนยัน: {
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            FindGood(inpGoodCode);
+
+                        }
+                    }
+                }
+            });
+
+        }else{
+
+            FindGood(inpGoodCode);
+
+        }
 
 
-});*/
+    });
 
 
 function CheckGoodDup(Goodcode) {
@@ -347,7 +349,7 @@ $("#modalCheckGood").on('shown.bs.modal', function(){
 });
 
 
-/*
+
 function FindGood(inpGoodCode) {
 
 
@@ -391,16 +393,16 @@ function FindGood(inpGoodCode) {
             $('#btnFindGood_Spinner').hide();
             $("#btnConfirm").prop('disabled', false);
             $("#inpGoodCode").select();
-            //$("#modal_Count").select();
+                //$("#modal_Count").select();
 
             }
         });
 
-}*/
+}
 
 
 
-/*
+
 var touchtime = 0;
 $("#table_data_Good").on("click", "tr", function() {
 
@@ -479,7 +481,7 @@ $("#inpGoodCode").on("click", function() {
         }
     }
 
-});*/
+});
 
 
 
@@ -507,6 +509,31 @@ $("#inpPO").on("click", function() {
 
 });
 
+
+
+var touchtime_ClearCountGood = 0;
+$("#modal_Count").on("click", function() {
+
+    if (touchtime_ClearCountGood == 0) {
+
+        touchtime_ClearCountGood = new Date().getTime();
+
+    } else {
+        if (((new Date().getTime()) - touchtime_ClearCountGood) < 300) {
+
+            //alert("Click Input Goods");
+            $('#modal_Count').val("");
+            touchtime_ClearCountGood = 0;
+
+
+        } else {
+
+            touchtime_ClearCountGood = new Date().getTime();
+
+        }
+    }
+
+});
 
 
 

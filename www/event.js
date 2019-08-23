@@ -756,7 +756,11 @@ $("#btnCancel").click(function(){
 
     $.confirm({
         title: '<strong style="color: green;">เริ่มใหม่</strong>',
+<<<<<<< HEAD
+        content: 'คุณต้องการ เริ่มต้นหน้านี้ใหม่อีกครั้งหรือไม่',
+=======
         content: 'คุณต้องการ เริ่มต้นโปรแกรมใหม่ อีกครั้งหรือไม่',
+>>>>>>> e772a1ba952457f1a80e21325752b313ff53962e
         type: 'green',
         buttons: {
             ยกเลิก: function () {

@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>HomeHub Application</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+
+  <link href="css/jquery-confirm.css" rel="stylesheet">
+
+  <link href="css/font-awesome.css" rel="stylesheet">
+
+
+  <link href="css/index.css" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+
+
+
+<!-- 
+    <a href="#"><i class="fa fa-bars"></i><span>เมนู</span></a>
+    <a href="#"><i class="fa fa-cube"></i><span>สินค้า</span></a> -->
+
+
+    <div class="footer-menu footer-5-icons footer-menu-center-icon">  
+      <a href="#" id="btnCancel"><i class="fa fa-refresh"></i><span>เริ่มใหม่</span></a>
+      <a href="#" id="btnSave" class="active-nav-green" ><i class="fa fa-floppy-o"></i><span>หน้าแรก</span></a>
+      <a href="#" id="btnShortKey"><i class="fa fa-bolt"></i><span>คีย์ลัด</span></a>
+      <div class="clear"></div>
+    </div>
+
+
+
+    <section id="about" style="padding: 5px; padding-top: 20px;">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-12 mx-auto"> 
+
+            <div id="bodyPage">
+
+
+              
+
+              <form class="form-inline" id="frm_Good">
+
+                <span class="badge badge-info">เลขที่เอกสาร</span>
+                <h3 id="header_frmgood"></h3>
+                <hr>
+
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-lg" id="inpGoodCode" placeholder="รหัสสินค้า" required >
+                  <div class="input-group-append" >
+                    <button class="btn btn-warning btn-sm" id="btnFindGood"><span id="btnFindGood_Spinner" class="spinner-border spinner-border-sm"></span>ค้นหา</button>
+                  </div>
+                </div>
+                
+                <table id="tableGood" class="table table-hover" style="font-size: 60%; ">
+                  <thead>
+                    <tr>
+                      <th style="padding: .40rem;" scope="col">รหัส</th>
+                      <th style="padding: .40rem;" scope="col">ชื่อ</th>
+                      <th style="padding: .40rem;" scope="col">คลัง</th>
+                      <th style="padding: .40rem;" scope="col">ที่เก็บ</th>
+                      <th style="padding: .40rem;" scope="col">หน่วย</th>
+                      <th style="padding: .40rem;" scope="col" align="right">จำนวน</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="table_data_Good">
+
+                  </tbody>
+
+                </table>
+                <!-- <button class="btn btn-success btn-lg btn-block" id="btnSave">บันทึกบิล</button> -->
+                <!-- <a class="btn btn-danger btn-sm btn-block" id="btnCancel">ยกเลิก</a> -->
+
+              </form>
+
+
+
+
+              <!-- Modal Find Goods -->
+              <div class="modal fade" id="modalCheckGood">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body" id="bodyCheckGood">
+                      
+                      <input class="form-control-lg form-control" autofocus type="number" placeholder="จำนวน" id="modal_Count" value="">
+                      
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id="btnCancelGood" class="btn btn-secondary btn" data-dismiss="modal">ยกเลิก</button>
+                      <button type="button" id="btnConfirm" class="btn btn-warning btn"><span id="btnConfirmSpinner" class="spinner-border spinner-border"></span>ยืนยัน</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+      <footer class="bd-footer text-muted">
+        <div class="container-fluid p-3 p-md-5">
+          <p id="LastUpdate" style="font-size: 11px; margin-bottom: 0;">Version 1.0.2</p>
+          <p id="CheckIP" style="font-size: 11px;"></p>
+        </div>
+
+      <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>สำเร็จ</strong> บันทึกเอกสารสำเร็จ
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+
+    </footer>
+  </section>
+
+
+
+
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+  <script src="js/jquery-confirm.js"></script>
+
+  <script src="event_CheckGood.js"></script>
+
+
+
+
+</body>
+
+</html>
