@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     $('#inpPO').focus()
     $('#btnFindSpinner').hide();
-    //$('#btnCheck').hide();
+    $('#btnCheck').hide();
     $('#btnCancelPO').hide();
     $('#btnFindGood_Spinner').hide();
     $('#frm_Good').hide();
@@ -120,7 +120,7 @@ $(document).ready(function(){
                         }
                     });
                     $("#inpPO").select();
-                    //$('#btnCheck').hide();
+                    $('#btnCheck').hide();
 
                 } else if (msg.trim() == "NotCheck") {
 
@@ -182,8 +182,8 @@ $(document).ready(function(){
                                     $('#table_data').html(arr[1]);
 
                                     var row_tablePO = $('#table_data tr').length;
-                                    //$('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
-                                    //$('#btnCheck').show();
+                                    $('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
+                                    $('#btnCheck').show();
                                     $('#btnCancelPO').show();
 
                                 }
@@ -199,8 +199,8 @@ $(document).ready(function(){
                     $('#table_data').html(msg);
 
                     var row_tablePO = $('#table_data tr').length;
-                    //$('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
-                    //$('#btnCheck').show();
+                    $('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
+                    $('#btnCheck').show();
                     $('#btnCancelPO').show();
 
                 }
@@ -221,7 +221,7 @@ $("#btnCheck").click(function(){
     $('#header_frmgood').html(PODocNo);
     $('#frm_PO').hide();
     $('#tablePO').hide();
-    //$('#btnCheck').hide();
+    $('#btnCheck').hide();
     $('#btnCancelPO').hide();
     $('#inpPO').prop('disabled', true);
     $('#btnFind').prop('disabled', true);
@@ -756,11 +756,8 @@ $("#btnCancel").click(function(){
 
     $.confirm({
         title: '<strong style="color: green;">เริ่มใหม่</strong>',
-<<<<<<< HEAD
         content: 'คุณต้องการ เริ่มต้นหน้านี้ใหม่อีกครั้งหรือไม่',
-=======
         content: 'คุณต้องการ เริ่มต้นโปรแกรมใหม่ อีกครั้งหรือไม่',
->>>>>>> e772a1ba952457f1a80e21325752b313ff53962e
         type: 'green',
         buttons: {
             ยกเลิก: function () {

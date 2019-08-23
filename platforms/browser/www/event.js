@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     $('#inpPO').focus()
     $('#btnFindSpinner').hide();
-    //$('#btnCheck').hide();
+    $('#btnCheck').hide();
     $('#btnCancelPO').hide();
     $('#btnFindGood_Spinner').hide();
     $('#frm_Good').hide();
@@ -120,7 +120,7 @@ $(document).ready(function(){
                         }
                     });
                     $("#inpPO").select();
-                    //$('#btnCheck').hide();
+                    $('#btnCheck').hide();
 
                 } else if (msg.trim() == "NotCheck") {
 
@@ -182,8 +182,8 @@ $(document).ready(function(){
                                     $('#table_data').html(arr[1]);
 
                                     var row_tablePO = $('#table_data tr').length;
-                                    //$('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
-                                    //$('#btnCheck').show();
+                                    $('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
+                                    $('#btnCheck').show();
                                     $('#btnCancelPO').show();
 
                                 }
@@ -199,8 +199,8 @@ $(document).ready(function(){
                     $('#table_data').html(msg);
 
                     var row_tablePO = $('#table_data tr').length;
-                    //$('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
-                    //$('#btnCheck').show();
+                    $('#btnCheck').html("ดำเนินการ เช็คสินค้า (" + row_tablePO + ")");
+                    $('#btnCheck').show();
                     $('#btnCancelPO').show();
 
                 }
@@ -218,103 +218,71 @@ $(document).ready(function(){
 
 $("#btnCheck").click(function(){
 
-    //var textPO = $('#header_frmgood').val();
-    //alert(textPO);
-
-    window.location = "page_CheckGood.html";
-
-
-    /*
-    if(textPO == ""){
-
-        $.confirm({
-            title: '<strong style="color: #004085;">แจ้งเตือน</strong>',
-            content: 'เลขที่เอกสารอนุมัติใบสั่งซื้อ เป็นค่าว่าง กรุณาตรวจสอบก่อนดำเนินการ',
-            type: 'blue',
-            buttons: {
-                ยืนยัน: {
-                    btnClass: 'btn-blue',
-                    action: function(){
-
-                         $('#inpPO').focus();
-
-                    }
-                }
-
-            }
-        });
-
-
-    }else{
-
-
-        $('#header_frmgood').html(PODocNo);
-        $('#frm_PO').hide();
-        $('#tablePO').hide();
-        //$('#btnCheck').hide();
-        $('#btnCancelPO').hide();
-        $('#inpPO').prop('disabled', true);
-        $('#btnFind').prop('disabled', true);
-        $('#frm_Good').show();
-        $('#inpStock').prop('disabled', true);
-        $('#btnSaveStock').prop('disabled', true);
-        $('#inpGoodCode').select();
-
-    }*/
+    $('#header_frmgood').html(PODocNo);
+    $('#frm_PO').hide();
+    $('#tablePO').hide();
+    $('#btnCheck').hide();
+    $('#btnCancelPO').hide();
+    $('#inpPO').prop('disabled', true);
+    $('#btnFind').prop('disabled', true);
+    $('#frm_Good').show();
+    $('#inpStock').prop('disabled', true);
+    $('#btnSaveStock').prop('disabled', true);
+    $('#inpGoodCode').select();
 
 });
 
-/*
+
 
 $("#btnFindGood").click(function(e) {
 
     e.preventDefault();
     var inpGoodCode = $("#inpGoodCode").val();
-    //FindGood(inpGoodCode);
+        //FindGood(inpGoodCode);
 
 
 
-    var myarray = [];
-    //ดึงรหัสสินค้าที่ยิงไปแล้ว เข้า Array
-    $('.td_GoodCode').each(function(){
+        var myarray = [];
+        /* ดึงรหัสสินค้าที่ยิงไปแล้ว เข้า Array*/
+        $('.td_GoodCode').each(function(){
 
-        myarray.push($(this).text().trim());
+            myarray.push($(this).text().trim());
 
-    });
-
-    //Check ว่ารหัสสแกนไปแล้วหรือยัง 
-    if(jQuery.inArray(inpGoodCode, myarray) !== -1){
-
-        $.confirm({
-            title: '<strong style="color: red;">สินค้าซ้ำ</strong>',
-            content: 'รหัสสินค้า <strong style="color: red;">' + inpGoodCode + '</strong> ถูกสแกนแล้ว ต้องการสแกนซ้ำหรือไม่',
-            type: 'red',
-            buttons: {
-                ยกเลิก: function () {
-
-
-                    $('#inpGoodCode').select();
-
-                },
-                ยืนยัน: {
-                    btnClass: 'btn-red',
-                    action: function(){
-
-                        FindGood(inpGoodCode);
-
-                    }
-                }
-            }
         });
 
-    }else{
+        /* Check ว่ารหัสสแกนไปแล้วหรือยัง */
+        if(jQuery.inArray(inpGoodCode, myarray) !== -1){
 
-        FindGood(inpGoodCode);
+            $.confirm({
+                title: '<strong style="color: red;">สินค้าซ้ำ</strong>',
+                content: 'รหัสสินค้า <strong style="color: red;">' + inpGoodCode + '</strong> ถูกสแกนแล้ว ต้องการสแกนซ้ำหรือไม่',
+                type: 'red',
+                buttons: {
+                    ยกเลิก: function () {
 
-    }
+
+                        $('#inpGoodCode').select();
+
+                    },
+                    ยืนยัน: {
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            FindGood(inpGoodCode);
+
+                        }
+                    }
+                }
+            });
+
+        }else{
+
+            FindGood(inpGoodCode);
+
+        }
 
 
-});*/
+    });
 
 
 function CheckGoodDup(Goodcode) {
@@ -347,7 +315,7 @@ $("#modalCheckGood").on('shown.bs.modal', function(){
 });
 
 
-/*
+
 function FindGood(inpGoodCode) {
 
 
@@ -391,16 +359,16 @@ function FindGood(inpGoodCode) {
             $('#btnFindGood_Spinner').hide();
             $("#btnConfirm").prop('disabled', false);
             $("#inpGoodCode").select();
-            //$("#modal_Count").select();
+                //$("#modal_Count").select();
 
             }
         });
 
-}*/
+}
 
 
 
-/*
+
 var touchtime = 0;
 $("#table_data_Good").on("click", "tr", function() {
 
@@ -479,7 +447,7 @@ $("#inpGoodCode").on("click", function() {
         }
     }
 
-});*/
+});
 
 
 
@@ -788,6 +756,7 @@ $("#btnCancel").click(function(){
 
     $.confirm({
         title: '<strong style="color: green;">เริ่มใหม่</strong>',
+        content: 'คุณต้องการ เริ่มต้นหน้านี้ใหม่อีกครั้งหรือไม่',
         content: 'คุณต้องการ เริ่มต้นโปรแกรมใหม่ อีกครั้งหรือไม่',
         type: 'green',
         buttons: {
