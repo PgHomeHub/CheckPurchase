@@ -81,6 +81,51 @@ $(document).ready(function(){
                 $('#CheckIP').html(XMLHttpRequest.responseText +" "+textStatus+" "+errorThrown);
             }
         });
+
+    }
+
+
+    CheckVersion();
+
+    function CheckVersion() {
+
+        $.ajax({
+            type: "post",
+            url: "http://192.168.100.31:8080/CheckPO/query_Version.php",
+            success: function(msg) {
+                if (msg.trim() == "") {
+
+
+                } else {
+
+                    var msg = msg.trim();
+                    alert(msg);
+                    $.confirm({
+                        title: '<strong style="color: orange;">แจ้งเตือน</strong>',
+                        content: 'โปรแกรมมีเวอร์ชั่นใหม่ กดยืนยันเพื่อดาวห์โหลดและติดตั้ง',
+                        type: 'orange',
+                        buttons: {
+                            ยืนยัน: {
+                                btnClass: 'btn-orange',
+                                action: function(){
+
+                                    window.location = msg;
+
+
+                                }
+                            }
+                        }
+                    });
+
+
+                }
+            },
+            complete: function() {
+
+
+            }
+        });
+
     }
 
 
@@ -593,7 +638,6 @@ $("#btnConfirm").click(function(){
 
 
 function setListTable() {
-
 
     $('#modalCheckGood').modal('hide');
     $('#inpGoodCode').val("");
