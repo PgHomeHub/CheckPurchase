@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>HomeHub Application</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/scrolling-nav.css" rel="stylesheet">
+
+	<link href="css/jquery-confirm.css" rel="stylesheet">
+
+	<link href="css/font-awesome.css" rel="stylesheet">
+
+
+
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation -->
+	<!-- Navigation -->
+
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+		<div class="container">
+			<a href="#" class="navbar-brand"><img src="img/logo_home.png" height="20%" width="40%" border=""></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>      
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item" id="statusServer"></li>
+				</ul>
+
+				<ul class="navbar-nav mr-auto order-1">
+
+					<li class="nav-item" id="btnShortKey"><a class="nav-link" href="#">คีย์ลัด การใช้งาน</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">แจ้งปัญหา</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" id="CheckConnect"></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<!-- Navigation -->
+	<!-- Navigation -->
+
+
+
+	<section id="about" style="padding: 5px; padding-top: 60px;">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-12 mx-auto"> 
+
+					<div id="bodyPage">
+
+
+						<form class="form-inline" id="frm_PO" action="?#">
+							<div class="input-group">
+								<input type="text" class="form-control-lg form-control" id="inpPO" placeholder="เลขอนุมติใบสั่งซื้อ" required >
+								<div class="input-group-append" >
+									<button class="btn btn-primary btn" id="btnFind"><span id="btnFindSpinner" class="spinner-border spinner-border-sm"></span>ค้นหา</button>
+								</div>
+							</div>
+						</form>
+						<table id="tablePO" class="table table-hover" style="font-size: 60%; ">
+							<thead>
+								<tr>
+									<th style="padding: .40rem;" scope="col">รหัส</th>
+									<th style="padding: .40rem;" scope="col">ชื่อ</th>
+									<th style="padding: .40rem;" scope="col">หน่วย</th>
+									<th style="padding: .40rem;" scope="col" align="right">จำนวน</th>
+								</tr>
+							</thead>
+							<tbody id="table_data">
+
+							</tbody> 
+						</table>
+
+						<button class="btn btn-primary btn-lg btn-block" type="submit" id="btnCheck"></button>  
+						<button class="btn btn-warning btn-sm btn-block" id="btnCancelPO">เริ่มใหม่</button>
+
+
+						<form class="form-inline" id="frm_Good">
+
+							<span class="badge badge-info">เลขที่เอกสาร</span>
+							<h3 id="header_frmgood"></h3>
+							<hr>
+
+							<div class="input-group">
+								<input type="text" class="form-control form-control-lg" id="inpGoodCode" placeholder="รหัสสินค้า" required >
+								<div class="input-group-append" >
+									<button class="btn btn-warning btn-sm" id="btnFindGood"><span id="btnFindGood_Spinner" class="spinner-border spinner-border-sm"></span>ค้นหา</button>
+								</div>
+							</div>
+
+							<table id="tableGood" class="table table-hover" style="font-size: 60%; ">
+								<thead>
+									<tr>
+										<th style="padding: .40rem;" scope="col">รหัส</th>
+										<th style="padding: .40rem;" scope="col">ชื่อ</th>
+										<th style="padding: .40rem;" scope="col">คลัง</th>
+										<th style="padding: .40rem;" scope="col">ที่เก็บ</th>
+										<th style="padding: .40rem;" scope="col">หน่วย</th>
+										<th style="padding: .40rem;" scope="col" align="right">จำนวน</th>
+									</tr>
+								</thead>
+
+								<tbody id="table_data_Good">
+
+								</tbody>
+
+							</table>
+							<button class="btn btn-success btn-lg btn-block" id="btnSave">บันทึกบิล</button>
+							<a class="btn btn-danger btn-sm btn-block" id="btnCancel">ยกเลิก</a>
+
+						</form>
+
+
+
+
+						<!-- Modal Find Goods -->
+						<div class="modal fade" id="modalCheckGood">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-body" id="bodyCheckGood">
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" id="btnCancelGood" class="btn btn-secondary btn" data-dismiss="modal">ยกเลิก</button>
+										<button type="button" id="btnConfirm" class="btn btn-warning btn"><span id="btnConfirmSpinner" class="spinner-border spinner-border"></span>ยืนยัน</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+		</div>
+		<footer class="bd-footer text-muted">
+
+			<div class="container-fluid p-3 p-md-5">
+				<p id="LastUpdate" style="font-size: 11px; margin-bottom: 0;">Version 1.0.0</p>
+				<p id="CheckIP" style="font-size: 11px;"></p>
+			</div>
+
+		</footer>
+	</section>
+
+
+
+	<div class="modal fade" id="modal_keyshort" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">คีย์ลัด ใช้โปรแกรม</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div align="center">
+						<b style="color: red;">แตะ 2 ที เพื่อล้างข้อมูล</b>
+						<img src="/img/key01.jpg" alt="" width="70%">
+						<img src="/img/key02.jpg" alt="" width="70%">
+					</div>
+					<hr>
+					<div align="center">
+						<b style="color: red;">แตะ 2 ที เพื่อลบรายการ</b>
+						<img src="/img/key03.jpg" alt="" width="70%">
+						<img src="/img/key04.jpg" alt="" width="70%">
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom JavaScript for this theme -->
+	<script src="js/scrolling-nav.js"></script>
+
+	<script src="js/jquery-confirm.js"></script>
+
+	<script src="event.js"></script>
+
+
+
+
+</body>
+
+</html>
