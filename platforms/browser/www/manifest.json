@@ -3,7 +3,7 @@
   "display": "standalone",
   "name": "CheckPurChase",
   "short_name": "CheckPurChase",
-  "version": "io.cordova.hellocordova",
+  "version": "com.homehub.checkpo",
   "description": "Homehub Application",
   "author": "Homehub Team",
   "icons": [
