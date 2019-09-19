@@ -1,6 +1,7 @@
 
 
 
+
 $(document).ready(function(){
 
     var PODocNo = "";
@@ -16,7 +17,6 @@ $(document).ready(function(){
     $('#btnSaveStock_Spinner').hide();
     $('#btnConfirmSpinner').hide();
 
-    
     //alert(x)
 
     $.ajax({
@@ -86,6 +86,37 @@ $(document).ready(function(){
 
 
 
+    FindVersion();
+
+    function FindVersion() {
+
+        var request = new XMLHttpRequest();
+        request.open("GET", "/../config.xml", false);
+        request.send();
+        var xml = request.responseXML;
+        var users = xml.getElementsByTagName("widget");
+        
+        //var user = users[1];
+        //alert(users);
+
+        
+        for(var i = 0; i < users.length; i++) {
+            var user = users[i];
+            var names = user.getAttribute("version");
+            
+
+            $('#LastUpdate').html("Version "+names);
+            //alert(names)
+            /*for(var j = 0; j < names.length; j++) {
+
+                //alert(names[j].childNodes[0].nodeValue);
+                alert(names[j].getAttribute('version'));
+
+            }*/
+        }
+        
+
+    }
 
 
     function FindPO() {
@@ -807,7 +838,8 @@ $("#btnCancel").click(function(){
 
 $("#btnShortKey").click(function(){
 
-    alert("กำลังพัฒนา ฟังก์ชั่นนี้");
+    $("#modal_keyshort").modal();
+    //alert("กำลังพัฒนา ฟังก์ชั่นนี้");
 
 });
 
